@@ -4,13 +4,47 @@
 
 ## 运行方式
 
-```bash
-# 运行完整的基准测试
-dart run benchmark/system_monitor_benchmark.dart
+由于 system_monitor_kit 是 Flutter 插件，基准测试必须在 Flutter 环境中运行。
 
-# 或者使用 Flutter
-flutter run benchmark/system_monitor_benchmark.dart
+### 方法 1：在示例应用中运行（推荐）
+
+```bash
+# 进入示例应用目录
+cd example
+
+# 在设备或模拟器上运行示例应用
+flutter run
+
+# 在应用中查看性能数据
 ```
+
+### 方法 2：使用 Flutter Test
+
+```bash
+# 将 benchmark 作为集成测试运行
+flutter test integration_test/benchmark_test.dart
+```
+
+### 方法 3：创建独立的 benchmark 应用
+
+如需运行独立的 benchmark，需要创建一个完整的 Flutter 应用：
+
+```bash
+# 创建 benchmark 应用
+flutter create benchmark_app
+cd benchmark_app
+
+# 添加依赖到 pubspec.yaml
+# dependencies:
+#   system_monitor_kit:
+#     path: ../
+
+# 将 benchmark 代码复制到 lib/main.dart
+# 然后运行
+flutter run
+```
+
+**注意**: `dart run benchmark/system_monitor_benchmark.dart` 无法工作，因为 Flutter 插件需要 Flutter 框架支持。
 
 ## 测试项目
 
