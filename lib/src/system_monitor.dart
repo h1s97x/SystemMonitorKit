@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:battery_plus/battery_plus.dart' as bp;
 import 'package:disk_space_plus/disk_space_plus.dart';
+import 'package:disks_desktop/src/repositories/disks_repository.dart';
 import 'models/models.dart';
 
 /// 系统监控器
@@ -96,18 +97,41 @@ class SystemMonitor {
   /// 获取磁盘信息
   Future<DiskInfo> getDiskInfo() async {
     try {
-      final diskSpace = DiskSpacePlus();
-      final totalSpace = await diskSpace.getTotalDiskSpace ?? 0;
-      final freeSpace = await diskSpace.getFreeDiskSpace ?? 0;
-      final usedSpace = totalSpace - freeSpace;
+      // 桌面平台使用 disks_desktop
+      if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+        final repository = DisksRepository();
+        final disks = await repository.query;
+        
+        if (disks.isEmpty) {
+          return DiskInfo(totalSpace: 0, usedSpace: 0, freeSpace: 0);
+        }
+        
+        // 获取第一个磁盘（通常是系统盘）
+        final disk = disks.first;
+        final totalSpace = disk.size ?? 0;
+        
+        // disks_desktop 不提供可用空间信息，只返回总空间
+        // 实际使用中可以通过 mountpoints 和其他方式获取
+        return DiskInfo(
+          totalSpace: totalSpace,
+          usedSpace: 0, // 不可用
+          freeSpace: 0, // 不可用
+        );
+      } else {
+        // 移动平台使用 disk_space_plus
+        final diskSpace = DiskSpacePlus();
+        final totalSpace = await diskSpace.getTotalDiskSpace ?? 0;
+        final freeSpace = await diskSpace.getFreeDiskSpace ?? 0;
+        final usedSpace = totalSpace - freeSpace;
 
-      return DiskInfo(
-        totalSpace: (totalSpace * 1024 * 1024).toInt(), // MB to bytes
-        usedSpace: (usedSpace * 1024 * 1024).toInt(),
-        freeSpace: (freeSpace * 1024 * 1024).toInt(),
-      );
+        return DiskInfo(
+          totalSpace: (totalSpace * 1024 * 1024).toInt(), // MB to bytes
+          usedSpace: (usedSpace * 1024 * 1024).toInt(),
+          freeSpace: (freeSpace * 1024 * 1024).toInt(),
+        );
+      }
     } catch (e) {
-      debugPrint('Failed to get disk info: $e');
+      // 静默处理错误
       return DiskInfo(
         totalSpace: 0,
         usedSpace: 0,

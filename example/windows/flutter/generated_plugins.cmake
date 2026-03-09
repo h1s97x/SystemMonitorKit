@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   battery_plus
+  disks_desktop
   system_monitor_kit
 )
 
