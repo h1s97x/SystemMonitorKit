@@ -1,5 +1,22 @@
 /// 磁盘信息
 class DiskInfo {
+  DiskInfo({
+    required this.totalSpace,
+    required this.usedSpace,
+    required this.freeSpace,
+    DateTime? timestamp,
+  })  : usage = totalSpace > 0 ? (usedSpace / totalSpace * 100) : 0,
+        timestamp = timestamp ?? DateTime.now();
+
+  factory DiskInfo.fromJson(Map<String, dynamic> json) {
+    return DiskInfo(
+      totalSpace: json['totalSpace'] as int,
+      usedSpace: json['usedSpace'] as int,
+      freeSpace: json['freeSpace'] as int,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+    );
+  }
+
   /// 总空间 (bytes)
   final int totalSpace;
   
@@ -14,14 +31,6 @@ class DiskInfo {
   
   /// 采样时间
   final DateTime timestamp;
-
-  DiskInfo({
-    required this.totalSpace,
-    required this.usedSpace,
-    required this.freeSpace,
-    DateTime? timestamp,
-  })  : usage = totalSpace > 0 ? (usedSpace / totalSpace * 100) : 0,
-        timestamp = timestamp ?? DateTime.now();
 
   /// 总空间 (MB)
   double get totalSpaceMB => totalSpace / (1024 * 1024);
@@ -49,15 +58,6 @@ class DiskInfo {
       'usage': usage,
       'timestamp': timestamp.toIso8601String(),
     };
-  }
-
-  factory DiskInfo.fromJson(Map<String, dynamic> json) {
-    return DiskInfo(
-      totalSpace: json['totalSpace'] as int,
-      usedSpace: json['usedSpace'] as int,
-      freeSpace: json['freeSpace'] as int,
-      timestamp: DateTime.parse(json['timestamp'] as String),
-    );
   }
 
   @override

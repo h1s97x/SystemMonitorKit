@@ -6,6 +6,26 @@ import 'network_traffic.dart';
 
 /// 系统综合信息
 class SystemInfo {
+  SystemInfo({
+    this.cpu,
+    this.memory,
+    this.disk,
+    this.battery,
+    this.network,
+    DateTime? timestamp,
+  }) : timestamp = timestamp ?? DateTime.now();
+
+  factory SystemInfo.fromJson(Map<String, dynamic> json) {
+    return SystemInfo(
+      cpu: json['cpu'] != null ? CpuInfo.fromJson(json['cpu']) : null,
+      memory: json['memory'] != null ? MemoryInfo.fromJson(json['memory']) : null,
+      disk: json['disk'] != null ? DiskInfo.fromJson(json['disk']) : null,
+      battery: json['battery'] != null ? BatteryInfo.fromJson(json['battery']) : null,
+      network: json['network'] != null ? NetworkTraffic.fromJson(json['network']) : null,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+    );
+  }
+
   /// CPU 信息
   final CpuInfo? cpu;
   
@@ -24,15 +44,6 @@ class SystemInfo {
   /// 采样时间
   final DateTime timestamp;
 
-  SystemInfo({
-    this.cpu,
-    this.memory,
-    this.disk,
-    this.battery,
-    this.network,
-    DateTime? timestamp,
-  }) : timestamp = timestamp ?? DateTime.now();
-
   Map<String, dynamic> toJson() {
     return {
       'cpu': cpu?.toJson(),
@@ -42,17 +53,6 @@ class SystemInfo {
       'network': network?.toJson(),
       'timestamp': timestamp.toIso8601String(),
     };
-  }
-
-  factory SystemInfo.fromJson(Map<String, dynamic> json) {
-    return SystemInfo(
-      cpu: json['cpu'] != null ? CpuInfo.fromJson(json['cpu']) : null,
-      memory: json['memory'] != null ? MemoryInfo.fromJson(json['memory']) : null,
-      disk: json['disk'] != null ? DiskInfo.fromJson(json['disk']) : null,
-      battery: json['battery'] != null ? BatteryInfo.fromJson(json['battery']) : null,
-      network: json['network'] != null ? NetworkTraffic.fromJson(json['network']) : null,
-      timestamp: DateTime.parse(json['timestamp'] as String),
-    );
   }
 
   @override

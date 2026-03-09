@@ -7,9 +7,10 @@ import 'models/models.dart';
 
 /// 系统监控器
 class SystemMonitor {
-  static final SystemMonitor _instance = SystemMonitor._internal();
   factory SystemMonitor() => _instance;
   SystemMonitor._internal();
+
+  static final SystemMonitor _instance = SystemMonitor._internal();
 
   final _battery = bp.Battery();
   

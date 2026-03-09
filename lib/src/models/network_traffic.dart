@@ -1,5 +1,23 @@
 /// 网络流量信息
 class NetworkTraffic {
+  NetworkTraffic({
+    required this.receivedBytes,
+    required this.sentBytes,
+    required this.receiveRate,
+    required this.sendRate,
+    DateTime? timestamp,
+  }) : timestamp = timestamp ?? DateTime.now();
+
+  factory NetworkTraffic.fromJson(Map<String, dynamic> json) {
+    return NetworkTraffic(
+      receivedBytes: json['receivedBytes'] as int,
+      sentBytes: json['sentBytes'] as int,
+      receiveRate: (json['receiveRate'] as num).toDouble(),
+      sendRate: (json['sendRate'] as num).toDouble(),
+      timestamp: DateTime.parse(json['timestamp'] as String),
+    );
+  }
+
   /// 接收字节数
   final int receivedBytes;
   
@@ -14,14 +32,6 @@ class NetworkTraffic {
   
   /// 采样时间
   final DateTime timestamp;
-
-  NetworkTraffic({
-    required this.receivedBytes,
-    required this.sentBytes,
-    required this.receiveRate,
-    required this.sendRate,
-    DateTime? timestamp,
-  }) : timestamp = timestamp ?? DateTime.now();
 
   /// 接收流量 (MB)
   double get receivedMB => receivedBytes / (1024 * 1024);
@@ -52,16 +62,6 @@ class NetworkTraffic {
       'sendRate': sendRate,
       'timestamp': timestamp.toIso8601String(),
     };
-  }
-
-  factory NetworkTraffic.fromJson(Map<String, dynamic> json) {
-    return NetworkTraffic(
-      receivedBytes: json['receivedBytes'] as int,
-      sentBytes: json['sentBytes'] as int,
-      receiveRate: (json['receiveRate'] as num).toDouble(),
-      sendRate: (json['sendRate'] as num).toDouble(),
-      timestamp: DateTime.parse(json['timestamp'] as String),
-    );
   }
 
   @override

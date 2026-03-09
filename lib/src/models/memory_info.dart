@@ -1,5 +1,22 @@
 /// 内存信息
 class MemoryInfo {
+  MemoryInfo({
+    required this.totalMemory,
+    required this.usedMemory,
+    required this.freeMemory,
+    DateTime? timestamp,
+  })  : usage = totalMemory > 0 ? (usedMemory / totalMemory * 100) : 0,
+        timestamp = timestamp ?? DateTime.now();
+
+  factory MemoryInfo.fromJson(Map<String, dynamic> json) {
+    return MemoryInfo(
+      totalMemory: json['totalMemory'] as int,
+      usedMemory: json['usedMemory'] as int,
+      freeMemory: json['freeMemory'] as int,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+    );
+  }
+
   /// 总内存 (bytes)
   final int totalMemory;
   
@@ -14,14 +31,6 @@ class MemoryInfo {
   
   /// 采样时间
   final DateTime timestamp;
-
-  MemoryInfo({
-    required this.totalMemory,
-    required this.usedMemory,
-    required this.freeMemory,
-    DateTime? timestamp,
-  })  : usage = totalMemory > 0 ? (usedMemory / totalMemory * 100) : 0,
-        timestamp = timestamp ?? DateTime.now();
 
   /// 总内存 (MB)
   double get totalMemoryMB => totalMemory / (1024 * 1024);
@@ -49,15 +58,6 @@ class MemoryInfo {
       'usage': usage,
       'timestamp': timestamp.toIso8601String(),
     };
-  }
-
-  factory MemoryInfo.fromJson(Map<String, dynamic> json) {
-    return MemoryInfo(
-      totalMemory: json['totalMemory'] as int,
-      usedMemory: json['usedMemory'] as int,
-      freeMemory: json['freeMemory'] as int,
-      timestamp: DateTime.parse(json['timestamp'] as String),
-    );
   }
 
   @override
