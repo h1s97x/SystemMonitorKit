@@ -2,8 +2,6 @@
 
 感谢您对本项目的关注！本指南将帮助您扩展插件功能。
 
-[English Version](CONTRIBUTING_EN.md)
-
 ## 架构概览
 
 ```
