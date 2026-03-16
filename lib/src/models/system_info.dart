@@ -33,29 +33,34 @@ class SystemInfo {
   factory SystemInfo.fromJson(Map<String, dynamic> json) {
     return SystemInfo(
       cpu: json['cpu'] != null ? CpuInfo.fromJson(json['cpu']) : null,
-      memory: json['memory'] != null ? MemoryInfo.fromJson(json['memory']) : null,
+      memory:
+          json['memory'] != null ? MemoryInfo.fromJson(json['memory']) : null,
       disk: json['disk'] != null ? DiskInfo.fromJson(json['disk']) : null,
-      battery: json['battery'] != null ? BatteryInfo.fromJson(json['battery']) : null,
-      network: json['network'] != null ? NetworkTraffic.fromJson(json['network']) : null,
+      battery: json['battery'] != null
+          ? BatteryInfo.fromJson(json['battery'])
+          : null,
+      network: json['network'] != null
+          ? NetworkTraffic.fromJson(json['network'])
+          : null,
       timestamp: DateTime.parse(json['timestamp'] as String),
     );
   }
 
   /// CPU 信息
   final CpuInfo? cpu;
-  
+
   /// 内存信息
   final MemoryInfo? memory;
-  
+
   /// 磁盘信息
   final DiskInfo? disk;
-  
+
   /// 电池信息
   final BatteryInfo? battery;
-  
+
   /// 网络流量
   final NetworkTraffic? network;
-  
+
   /// 采样时间
   final DateTime timestamp;
 

@@ -35,37 +35,37 @@ class NetworkTraffic {
 
   /// 接收字节数
   final int receivedBytes;
-  
+
   /// 发送字节数
   final int sentBytes;
-  
+
   /// 接收速率 (bytes/s)
   final double receiveRate;
-  
+
   /// 发送速率 (bytes/s)
   final double sendRate;
-  
+
   /// 采样时间
   final DateTime timestamp;
 
   /// 接收流量 (MB)
   double get receivedMB => receivedBytes / (1024 * 1024);
-  
+
   /// 发送流量 (MB)
   double get sentMB => sentBytes / (1024 * 1024);
-  
+
   /// 总流量 (MB)
   double get totalMB => (receivedBytes + sentBytes) / (1024 * 1024);
-  
+
   /// 接收速率 (KB/s)
   double get receiveRateKBps => receiveRate / 1024;
-  
+
   /// 发送速率 (KB/s)
   double get sendRateKBps => sendRate / 1024;
-  
+
   /// 接收速率 (MB/s)
   double get receiveRateMBps => receiveRate / (1024 * 1024);
-  
+
   /// 发送速率 (MB/s)
   double get sendRateMBps => sendRate / (1024 * 1024);
 

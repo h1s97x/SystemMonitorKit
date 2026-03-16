@@ -180,21 +180,19 @@ Future<void> benchmarkStreamPerformance(SystemMonitor monitor) async {
 
   const duration = Duration(seconds: 5);
   const interval = Duration(milliseconds: 100);
-  
+
   final stopwatch = Stopwatch()..start();
   int eventCount = 0;
   final completer = Completer<void>();
 
-  final subscription = monitor
-      .createMonitorStream(interval: interval)
-      .listen(
-        (info) {
-          eventCount++;
-        },
-        onError: (e) {
-          // 忽略错误
-        },
-      );
+  final subscription = monitor.createMonitorStream(interval: interval).listen(
+    (info) {
+      eventCount++;
+    },
+    onError: (e) {
+      // 忽略错误
+    },
+  );
 
   // 运行指定时间后停止
   Future.delayed(duration, () {

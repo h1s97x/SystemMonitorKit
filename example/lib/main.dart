@@ -46,11 +46,13 @@ class _HomePageState extends State<HomePage> {
 
   void _toggleMonitoring() {
     setState(() => _isMonitoring = !_isMonitoring);
-    
+
     if (_isMonitoring) {
-      _monitor.createMonitorStream(
+      _monitor
+          .createMonitorStream(
         interval: const Duration(seconds: 2),
-      ).listen((info) {
+      )
+          .listen((info) {
         if (mounted && _isMonitoring) {
           setState(() => _systemInfo = info);
         }
@@ -97,7 +99,8 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Icon(Icons.sensors, color: Colors.green),
                           SizedBox(width: 8),
-                          Text('实时监控中...', style: TextStyle(color: Colors.green)),
+                          Text('实时监控中...',
+                              style: TextStyle(color: Colors.green)),
                         ],
                       ),
                     ),
@@ -127,7 +130,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Icon(Icons.memory, color: Colors.blue),
                 const SizedBox(width: 8),
-                const Text('CPU', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('CPU',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 12),
@@ -157,13 +162,16 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Icon(Icons.storage, color: Colors.orange),
                 const SizedBox(width: 8),
-                const Text('内存', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('内存',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 12),
             _buildProgressBar('使用率', memory.usage, Colors.orange),
             const SizedBox(height: 8),
-            _buildInfoRow('总内存', '${memory.totalMemoryGB.toStringAsFixed(2)} GB'),
+            _buildInfoRow(
+                '总内存', '${memory.totalMemoryGB.toStringAsFixed(2)} GB'),
             _buildInfoRow('已用', '${memory.usedMemoryGB.toStringAsFixed(2)} GB'),
             _buildInfoRow('可用', '${memory.freeMemoryGB.toStringAsFixed(2)} GB'),
           ],
@@ -187,7 +195,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Icon(Icons.sd_storage, color: Colors.purple),
                 const SizedBox(width: 8),
-                const Text('磁盘', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('磁盘',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 12),
@@ -223,11 +233,15 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Icon(
-                  battery.isCharging ? Icons.battery_charging_full : Icons.battery_std,
+                  battery.isCharging
+                      ? Icons.battery_charging_full
+                      : Icons.battery_std,
                   color: color,
                 ),
                 const SizedBox(width: 8),
-                const Text('电池', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('电池',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 12),
@@ -235,8 +249,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 8),
             _buildInfoRow('状态', battery.state.name),
             _buildInfoRow('充电', battery.isCharging ? '是' : '否'),
-            if (battery.isInBatterySaveMode)
-              _buildInfoRow('省电模式', '开启'),
+            if (battery.isInBatterySaveMode) _buildInfoRow('省电模式', '开启'),
           ],
         ),
       ),
@@ -258,12 +271,16 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Icon(Icons.network_check, color: Colors.teal),
                 const SizedBox(width: 8),
-                const Text('网络', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('网络',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 12),
-            _buildInfoRow('下载速率', '${network.receiveRateKBps.toStringAsFixed(1)} KB/s'),
-            _buildInfoRow('上传速率', '${network.sendRateKBps.toStringAsFixed(1)} KB/s'),
+            _buildInfoRow(
+                '下载速率', '${network.receiveRateKBps.toStringAsFixed(1)} KB/s'),
+            _buildInfoRow(
+                '上传速率', '${network.sendRateKBps.toStringAsFixed(1)} KB/s'),
             _buildInfoRow('已接收', '${network.receivedMB.toStringAsFixed(2)} MB'),
             _buildInfoRow('已发送', '${network.sentMB.toStringAsFixed(2)} MB'),
           ],
@@ -280,7 +297,8 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(label),
-            Text('${value.toStringAsFixed(1)}%', style: TextStyle(color: color, fontWeight: FontWeight.bold)),
+            Text('${value.toStringAsFixed(1)}%',
+                style: TextStyle(color: color, fontWeight: FontWeight.bold)),
           ],
         ),
         const SizedBox(height: 4),

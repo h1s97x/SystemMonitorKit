@@ -177,16 +177,15 @@ void main() {
       int eventCount = 0;
       final completer = Completer<void>();
 
-      final subscription = monitor
-          .createMonitorStream(interval: interval)
-          .listen(
-            (info) {
-              eventCount++;
-            },
-            onError: (e) {
-              // 忽略错误
-            },
-          );
+      final subscription =
+          monitor.createMonitorStream(interval: interval).listen(
+        (info) {
+          eventCount++;
+        },
+        onError: (e) {
+          // 忽略错误
+        },
+      );
 
       // 运行指定时间后停止
       Future.delayed(duration, () {
@@ -197,9 +196,8 @@ void main() {
 
       await completer.future;
 
-      final avgInterval = eventCount > 0
-          ? stopwatch.elapsedMilliseconds / eventCount
-          : 0.0;
+      final avgInterval =
+          eventCount > 0 ? stopwatch.elapsedMilliseconds / eventCount : 0.0;
       print(
         '  Stream monitoring: $eventCount events in ${stopwatch.elapsedMilliseconds} ms',
       );

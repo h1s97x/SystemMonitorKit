@@ -26,27 +26,29 @@ class CpuInfo {
       usage: (json['usage'] as num).toDouble(),
       coreCount: json['coreCount'] as int,
       architecture: json['architecture'] as String?,
-      frequency: json['frequency'] != null ? (json['frequency'] as num).toDouble() : null,
+      frequency: json['frequency'] != null
+          ? (json['frequency'] as num).toDouble()
+          : null,
       timestamp: DateTime.parse(json['timestamp'] as String),
     );
   }
 
   /// CPU 使用率 (0-100)
   final double usage;
-  
+
   /// CPU 核心数
   final int coreCount;
-  
+
   /// CPU 架构
-  /// 
+  ///
   /// 常见值：
   /// - 'ARM': ARM 架构（移动设备）
   /// - 'x86_64': x86-64 架构（桌面设备）
   final String? architecture;
-  
+
   /// CPU 频率 (MHz)
   final double? frequency;
-  
+
   /// 采样时间
   final DateTime timestamp;
 

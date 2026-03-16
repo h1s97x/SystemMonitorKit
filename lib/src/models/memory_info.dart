@@ -33,34 +33,34 @@ class MemoryInfo {
 
   /// 总内存 (bytes)
   final int totalMemory;
-  
+
   /// 已使用内存 (bytes)
   final int usedMemory;
-  
+
   /// 可用内存 (bytes)
   final int freeMemory;
-  
+
   /// 内存使用率 (0-100)
   final double usage;
-  
+
   /// 采样时间
   final DateTime timestamp;
 
   /// 总内存 (MB)
   double get totalMemoryMB => totalMemory / (1024 * 1024);
-  
+
   /// 已使用内存 (MB)
   double get usedMemoryMB => usedMemory / (1024 * 1024);
-  
+
   /// 可用内存 (MB)
   double get freeMemoryMB => freeMemory / (1024 * 1024);
-  
+
   /// 总内存 (GB)
   double get totalMemoryGB => totalMemory / (1024 * 1024 * 1024);
-  
+
   /// 已使用内存 (GB)
   double get usedMemoryGB => usedMemory / (1024 * 1024 * 1024);
-  
+
   /// 可用内存 (GB)
   double get freeMemoryGB => freeMemory / (1024 * 1024 * 1024);
 

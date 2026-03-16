@@ -4,13 +4,13 @@
 enum BatteryState {
   /// 充电中
   charging,
-  
+
   /// 放电中
   discharging,
-  
+
   /// 已充满
   full,
-  
+
   /// 未知
   unknown,
 }
@@ -53,16 +53,16 @@ class BatteryInfo {
 
   /// 电池电量 (0-100)
   final int level;
-  
+
   /// 电池状态
   final BatteryState state;
-  
+
   /// 是否正在充电
   final bool isCharging;
-  
+
   /// 是否低电量模式
   final bool isInBatterySaveMode;
-  
+
   /// 采样时间
   final DateTime timestamp;
 
@@ -70,7 +70,7 @@ class BatteryInfo {
   ///
   /// 当电量低于 20% 时返回 true。
   bool get isLowBattery => level < 20;
-  
+
   /// 是否极低电量 (< 10%)
   ///
   /// 当电量低于 10% 时返回 true，表示电池即将耗尽。

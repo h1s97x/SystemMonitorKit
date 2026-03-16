@@ -33,34 +33,34 @@ class DiskInfo {
 
   /// 总空间 (bytes)
   final int totalSpace;
-  
+
   /// 已使用空间 (bytes)
   final int usedSpace;
-  
+
   /// 可用空间 (bytes)
   final int freeSpace;
-  
+
   /// 磁盘使用率 (0-100)
   final double usage;
-  
+
   /// 采样时间
   final DateTime timestamp;
 
   /// 总空间 (MB)
   double get totalSpaceMB => totalSpace / (1024 * 1024);
-  
+
   /// 已使用空间 (MB)
   double get usedSpaceMB => usedSpace / (1024 * 1024);
-  
+
   /// 可用空间 (MB)
   double get freeSpaceMB => freeSpace / (1024 * 1024);
-  
+
   /// 总空间 (GB)
   double get totalSpaceGB => totalSpace / (1024 * 1024 * 1024);
-  
+
   /// 已使用空间 (GB)
   double get usedSpaceGB => usedSpace / (1024 * 1024 * 1024);
-  
+
   /// 可用空间 (GB)
   double get freeSpaceGB => freeSpace / (1024 * 1024 * 1024);
 

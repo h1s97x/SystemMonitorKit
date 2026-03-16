@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:battery_plus/battery_plus.dart' as bp;
 import 'package:disk_space_plus/disk_space_plus.dart';
-import 'package:disks_desktop/src/repositories/disks_repository.dart';
 import 'models/models.dart';
 
 /// 系统监控器
@@ -32,7 +31,7 @@ class SystemMonitor {
   static final SystemMonitor _instance = SystemMonitor._internal();
 
   final _battery = bp.Battery();
-  
+
   // 网络流量追踪
   int _lastReceivedBytes = 0;
   int _lastSentBytes = 0;
@@ -120,7 +119,7 @@ class SystemMonitor {
     try {
       // 获取 CPU 核心数
       final coreCount = Platform.numberOfProcessors;
-      
+
       // 模拟 CPU 使用率（实际需要平台特定实现）
       final usage = await _estimateCpuUsage();
 
@@ -183,7 +182,7 @@ class SystemMonitor {
   /// 返回设备的磁盘空间信息，包括总空间、已用空间、可用空间等。
   /// 不同平台的实现方式不同：
   /// - 移动平台 (Android/iOS): 使用 disk_space_plus 包
-  /// - 桌面平台 (Windows/Linux/macOS): 使用 disks_desktop 包
+  /// - 桌面平台 (Windows/Linux/macOS): 使用 disk_space_plus 包
   ///
   /// 返回值：
   /// - [DiskInfo] 包含磁盘空间信息
@@ -197,39 +196,17 @@ class SystemMonitor {
   /// ```
   Future<DiskInfo> getDiskInfo() async {
     try {
-      // 桌面平台使用 disks_desktop
-      if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-        final repository = DisksRepository();
-        final disks = await repository.query;
-        
-        if (disks.isEmpty) {
-          return DiskInfo(totalSpace: 0, usedSpace: 0, freeSpace: 0);
-        }
-        
-        // 获取第一个磁盘（通常是系统盘）
-        final disk = disks.first;
-        final totalSpace = disk.size ?? 0;
-        
-        // disks_desktop 不提供可用空间信息，只返回总空间
-        // 实际使用中可以通过 mountpoints 和其他方式获取
-        return DiskInfo(
-          totalSpace: totalSpace,
-          usedSpace: 0, // 不可用
-          freeSpace: 0, // 不可用
-        );
-      } else {
-        // 移动平台使用 disk_space_plus
-        final diskSpace = DiskSpacePlus();
-        final totalSpace = await diskSpace.getTotalDiskSpace ?? 0;
-        final freeSpace = await diskSpace.getFreeDiskSpace ?? 0;
-        final usedSpace = totalSpace - freeSpace;
+      // 使用 disk_space_plus 获取磁盘信息
+      final diskSpace = DiskSpacePlus();
+      final totalSpace = await diskSpace.getTotalDiskSpace ?? 0;
+      final freeSpace = await diskSpace.getFreeDiskSpace ?? 0;
+      final usedSpace = totalSpace - freeSpace;
 
-        return DiskInfo(
-          totalSpace: (totalSpace * 1024 * 1024).toInt(), // MB to bytes
-          usedSpace: (usedSpace * 1024 * 1024).toInt(),
-          freeSpace: (freeSpace * 1024 * 1024).toInt(),
-        );
-      }
+      return DiskInfo(
+        totalSpace: (totalSpace * 1024 * 1024).toInt(), // MB to bytes
+        usedSpace: (usedSpace * 1024 * 1024).toInt(),
+        freeSpace: (freeSpace * 1024 * 1024).toInt(),
+      );
     } catch (e) {
       // 静默处理错误
       return DiskInfo(
@@ -263,7 +240,7 @@ class SystemMonitor {
       // 注意：这里使用模拟值，实际需要平台特定实现
       final now = DateTime.now();
       final duration = now.difference(_lastNetworkCheck).inSeconds;
-      
+
       if (duration == 0) {
         return NetworkTraffic(
           receivedBytes: _lastReceivedBytes,
@@ -275,7 +252,7 @@ class SystemMonitor {
 
       final receivedBytes = _lastReceivedBytes + (1024 * 100); // 模拟接收
       final sentBytes = _lastSentBytes + (1024 * 50); // 模拟发送
-      
+
       final receiveRate = (receivedBytes - _lastReceivedBytes) / duration;
       final sendRate = (sentBytes - _lastSentBytes) / duration;
 
