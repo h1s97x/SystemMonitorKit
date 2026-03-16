@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.0.2] - 2026-03-16
+
+#### Fixed
+
+- Remove improper internal package imports from disks_desktop
+- Unify disk information retrieval using disk_space_plus
+- Fix code analysis issues
+
+#### Changed
+
+- Improved code quality and standards compliance
+
 ### [1.0.1] - 2026-03-16
 
 #### Added
@@ -86,6 +98,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 本项目的所有重要变更都将记录在此文件中。
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且本项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
+
+### [1.0.2] - 2026-03-16
+
+#### 修复
+
+- 移除 disks_desktop 的不规范内部包导入
+- 统一使用 disk_space_plus 获取磁盘信息
+- 修复代码分析问题
+
+#### 变更
+
+- 改进代码质量和标准合规性
 
 ### [1.0.1] - 2026-03-16
 
