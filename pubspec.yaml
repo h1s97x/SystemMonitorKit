@@ -15,7 +15,7 @@ dependencies:
   plugin_platform_interface: ^2.0.2
   battery_plus: ^7.0.0
   device_info_plus: ^12.3.0
-  disk_space_plus: ^0.2.1
+  disk_space_plus: ^0.2.5
   disks_desktop: ^1.0.1
 
 dev_dependencies:

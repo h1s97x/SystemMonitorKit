@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:battery_plus/battery_plus.dart' as bp;
-import 'package:disk_space_plus/disk_space_plus.dart';
+import 'package:disk_space_plus/disk_space_plus.dart' as dsp;
 import 'models/models.dart';
 
 /// 系统监控器
@@ -197,7 +197,7 @@ class SystemMonitor {
   Future<DiskInfo> getDiskInfo() async {
     try {
       // 使用 disk_space_plus 获取磁盘信息
-      final diskSpace = DiskSpacePlus();
+      final diskSpace = dsp.DiskSpacePlus();
       final totalSpace = await diskSpace.getTotalDiskSpace ?? 0;
       final freeSpace = await diskSpace.getFreeDiskSpace ?? 0;
       final usedSpace = totalSpace - freeSpace;
