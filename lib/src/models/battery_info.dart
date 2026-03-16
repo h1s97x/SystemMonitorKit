@@ -1,4 +1,6 @@
-/// 电池状态
+/// 电池状态枚举
+///
+/// 表示设备电池的当前状态。
 enum BatteryState {
   /// 充电中
   charging,
@@ -14,6 +16,19 @@ enum BatteryState {
 }
 
 /// 电池信息
+///
+/// 包含设备电池的详细信息，包括电量、状态、充电状态等。
+///
+/// 使用示例：
+/// ```dart
+/// final battery = BatteryInfo(
+///   level: 85,
+///   state: BatteryState.charging,
+///   isCharging: true,
+/// );
+/// print('电量: ${battery.level}%');
+/// print('低电量: ${battery.isLowBattery}');
+/// ```
 class BatteryInfo {
   BatteryInfo({
     required this.level,
@@ -52,9 +67,13 @@ class BatteryInfo {
   final DateTime timestamp;
 
   /// 是否低电量 (< 20%)
+  ///
+  /// 当电量低于 20% 时返回 true。
   bool get isLowBattery => level < 20;
   
   /// 是否极低电量 (< 10%)
+  ///
+  /// 当电量低于 10% 时返回 true，表示电池即将耗尽。
   bool get isCriticalBattery => level < 10;
 
   Map<String, dynamic> toJson() {

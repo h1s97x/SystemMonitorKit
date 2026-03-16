@@ -1,4 +1,19 @@
 /// 网络流量信息
+///
+/// 包含网络流量的详细信息，包括接收/发送字节数和速率。
+/// 提供多种单位的便捷访问方法（bytes、KB/s、MB/s）。
+///
+/// 使用示例：
+/// ```dart
+/// final traffic = NetworkTraffic(
+///   receivedBytes: 1024 * 1024,
+///   sentBytes: 512 * 1024,
+///   receiveRate: 1024 * 100,
+///   sendRate: 1024 * 50,
+/// );
+/// print('接收速率: ${traffic.receiveRateKBps.toStringAsFixed(1)}KB/s');
+/// print('发送速率: ${traffic.sendRateKBps.toStringAsFixed(1)}KB/s');
+/// ```
 class NetworkTraffic {
   NetworkTraffic({
     required this.receivedBytes,

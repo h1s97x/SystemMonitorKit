@@ -1,4 +1,18 @@
 /// 磁盘信息
+///
+/// 包含设备磁盘的详细信息，包括总空间、已用空间、可用空间等。
+/// 提供多种单位的便捷访问方法（bytes、MB、GB）。
+///
+/// 使用示例：
+/// ```dart
+/// final disk = DiskInfo(
+///   totalSpace: 256 * 1024 * 1024 * 1024,
+///   usedSpace: 128 * 1024 * 1024 * 1024,
+///   freeSpace: 128 * 1024 * 1024 * 1024,
+/// );
+/// print('总空间: ${disk.totalSpaceGB.toStringAsFixed(2)}GB');
+/// print('使用率: ${disk.usage.toStringAsFixed(1)}%');
+/// ```
 class DiskInfo {
   DiskInfo({
     required this.totalSpace,

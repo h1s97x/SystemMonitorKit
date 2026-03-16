@@ -1,4 +1,18 @@
 /// 内存信息
+///
+/// 包含设备内存的详细信息，包括总内存、已用内存、可用内存等。
+/// 提供多种单位的便捷访问方法（bytes、MB、GB）。
+///
+/// 使用示例：
+/// ```dart
+/// final memory = MemoryInfo(
+///   totalMemory: 8 * 1024 * 1024 * 1024,
+///   usedMemory: 4 * 1024 * 1024 * 1024,
+///   freeMemory: 4 * 1024 * 1024 * 1024,
+/// );
+/// print('总内存: ${memory.totalMemoryGB.toStringAsFixed(2)}GB');
+/// print('使用率: ${memory.usage.toStringAsFixed(1)}%');
+/// ```
 class MemoryInfo {
   MemoryInfo({
     required this.totalMemory,

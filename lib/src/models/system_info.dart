@@ -5,6 +5,21 @@ import 'battery_info.dart';
 import 'network_traffic.dart';
 
 /// 系统综合信息
+///
+/// 包含所有系统资源的综合信息，包括 CPU、内存、磁盘、电池、网络等。
+/// 这是一个聚合类，用于一次性获取所有系统信息。
+///
+/// 使用示例：
+/// ```dart
+/// final systemInfo = SystemInfo(
+///   cpu: cpuInfo,
+///   memory: memoryInfo,
+///   disk: diskInfo,
+///   battery: batteryInfo,
+///   network: networkTraffic,
+/// );
+/// print('系统信息: $systemInfo');
+/// ```
 class SystemInfo {
   SystemInfo({
     this.cpu,
