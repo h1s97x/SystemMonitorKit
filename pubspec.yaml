@@ -2,6 +2,8 @@ name: system_monitor_kit
 description: A comprehensive system monitoring toolkit for Flutter with CPU, memory, disk, battery, and network monitoring.
 version: 1.0.1
 homepage: https://github.com/h1s97x/SystemMonitorKit
+repository: https://github.com/h1s97x/SystemMonitorKit
+issue_tracker: https://github.com/h1s97x/SystemMonitorKit/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -11,8 +13,8 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  battery_plus: ^6.0.0
-  device_info_plus: ^10.0.0
+  battery_plus: ^7.0.0
+  device_info_plus: ^12.3.0
   disk_space_plus: ^0.2.1
   disks_desktop: ^1.0.1
 
