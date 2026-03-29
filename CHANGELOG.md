@@ -13,6 +13,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.0.4] - 2026-03-29
+
+#### Fixed
+
+- Fixed Android package name from `com.example.system_monitor_kit` to `dev.fluttercommunity.system_monitor_kit`
+- Implemented complete Android native plugin with system monitoring capabilities
+- Fixed plugin loading issues by correcting package declaration and directory structure
+
+#### Improved
+
+- Enhanced Android platform support with native implementations
+- Added native CPU information retrieval (core count, architecture, usage estimation)
+- Added native memory information retrieval (total, used, free memory)
+- Added native disk information retrieval (total, used, free space)
+- Added native battery information retrieval (level, charging state, temperature, voltage)
+- Added native network information retrieval (connection status, type)
+- Added comprehensive system information retrieval
+- Better compatibility with FlutterCommunity package naming standards
+
+---
+
 ### [1.0.3] - 2026-03-16
 
 #### Fixed
@@ -110,6 +131,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 本项目的所有重要变更都将记录在此文件中。
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 并且本项目遵循[语义化版本](https://semver.org/lang/zh-CN/)。
+
+### [1.0.4] - 2026-03-29
+
+#### 修复
+
+- 修复 Android 包名从 `com.example.system_monitor_kit` 更改为 `dev.fluttercommunity.system_monitor_kit`
+- 实现完整的 Android 原生插件，包含系统监控功能
+- 修复插件加载问题，修正包声明和目录结构
+
+#### 改进
+
+- 增强了 Android 平台支持的原生实现
+- 添加了原生 CPU 信息获取（核心数、架构、使用率估算）
+- 添加了原生内存信息获取（总量、已用、可用内存）
+- 添加了原生磁盘信息获取（总空间、已用、可用空间）
+- 添加了原生电池信息获取（电量、充电状态、温度、电压）
+- 添加了原生网络信息获取（连接状态、类型）
+- 添加了综合系统信息获取
+- 更好的兼容 FlutterCommunity 包命名规范
+
+---
 
 ### [1.0.3] - 2026-03-16
 
